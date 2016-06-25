@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "595282529503",
+    "project_id": "helloelo-43df0"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:595282529503:android:0fb3bb594a24ac21",
+        "android_client_info": {
+          "package_name": "tk.helloelo.helloelo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "595282529503-7017dlnafpep7k2cjkpjf37b9sjq8grk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tk.helloelo.helloelo",
+            "certificate_hash": "4EA474DAE2C4305F93E987286FF99136086E9B61"
+          }
+        },
+        {
+          "client_id": "595282529503-nknp153i2chp3bb48lt7krlce2abi3ra.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5IBpw7ErgD-OkFdQIR3mmsvxRYJdmShQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
