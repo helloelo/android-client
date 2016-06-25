@@ -19,6 +19,12 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.common.api.Status;
 
+import org.json.*;
+import com.loopj.android.http.*;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+
+import cz.msebera.android.httpclient.Header;
+
 /**
  * Demonstrates retrieving an offline access one-time code for the current Google user, which
  * can be exchanged by your server for an access token and refresh token.
@@ -118,6 +124,30 @@ public class ServerAuthCodeActivity extends AppCompatActivity implements
                 // [START get_auth_code]
                 GoogleSignInAccount acct = result.getSignInAccount();
                 String authCode = acct.getServerAuthCode();
+
+                // Show signed-in UI.
+                mAuthCodeTextView.setText(getString(R.string.auth_code_fmt, authCode));
+                updateUI(true);
+
+                HelloEloClient.get("oauth", null, new AsyncHttpResponseHandler() {
+                    @Override
+                    public void onStart() {
+                    }
+
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, byte[] response) {
+                        mAuthCodeTextView.setText(getString(R.string.auth_code_fmt, new String(response)));
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
+                    }
+
+                    @Override
+                    public void onRetry(int retryNo) {
+                    }
+
+                });
 
                 // Show signed-in UI.
                 mAuthCodeTextView.setText(getString(R.string.auth_code_fmt, authCode));
