@@ -1,2 +1,2 @@
 # android-client
-Helloelo Android Application
+HelloElo Android Application
