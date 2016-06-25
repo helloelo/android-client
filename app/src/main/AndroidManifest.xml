@@ -9,35 +9,13 @@
         android:theme="@style/AppTheme" >
 
         <activity
-            android:name=".ChooserActivity"
-            android:label="@string/app_name">
+            android:name=".ServerAuthCodeActivity"
+            android:label="@string/app_name"
+            android:theme="@style/ThemeOverlay.MyNoTitleActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <activity
-            android:name="tk.helloelo.helloelo.SignInActivity"
-            android:label="@string/name_sign_in_activity"
-            android:theme="@style/ThemeOverlay.MyNoTitleActivity">
-        </activity>
-        <activity
-            android:name="tk.helloelo.helloelo.SignInActivityWithDrive"
-            android:label="@string/name_sign_in_activity"
-            android:theme="@style/ThemeOverlay.MyNoTitleActivity">
-        </activity>
-        <activity
-            android:name="tk.helloelo.helloelo.IdTokenActivity"
-            android:label="@string/name_id_token_activity"
-            android:theme="@style/ThemeOverlay.MyNoTitleActivity">
-        </activity>
-
-        <activity
-            android:name="tk.helloelo.helloelo.ServerAuthCodeActivity"
-            android:label="@string/name_auth_code_activity"
-            android:theme="@style/ThemeOverlay.MyNoTitleActivity">
         </activity>
 
     </application>
