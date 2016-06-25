@@ -129,7 +129,10 @@ public class ServerAuthCodeActivity extends AppCompatActivity implements
                 mAuthCodeTextView.setText(getString(R.string.auth_code_fmt, authCode));
                 updateUI(true);
 
-                HelloEloClient.get("oauth", null, new AsyncHttpResponseHandler() {
+                RequestParams params = new RequestParams();
+                params.add("code", authCode);
+
+                HelloEloClient.get("oauth", params, new AsyncHttpResponseHandler() {
                     @Override
                     public void onStart() {
                     }

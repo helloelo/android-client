@@ -3,7 +3,7 @@ package tk.helloelo.helloelo;
 import com.loopj.android.http.*;
 
 public class HelloEloClient {
-    private static final String BASE_URL = "http://helloelo.tk/v1/";
+    private static final String BASE_URL = /*"http://helloelo.tk:8080/";//*/"http://helloelo.tk/v1/";
 
     private static AsyncHttpClient client = new AsyncHttpClient();
 
