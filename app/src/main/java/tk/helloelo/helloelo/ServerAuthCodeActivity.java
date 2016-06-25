@@ -59,7 +59,7 @@ public class ServerAuthCodeActivity extends AppCompatActivity implements
         // code exchange.
         String serverClientId = getString(R.string.server_client_id);
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestScopes(new Scope(Scopes.DRIVE_APPFOLDER))
+                .requestScopes(new Scope(Scopes.PROFILE), new Scope(Scopes.EMAIL))
                 .requestServerAuthCode(serverClientId)
                 .requestEmail()
                 .build();
@@ -110,7 +110,9 @@ public class ServerAuthCodeActivity extends AppCompatActivity implements
 
         if (requestCode == RC_GET_AUTH_CODE) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+
             Log.d(TAG, "onActivityResult:GET_AUTH_CODE:success:" + result.getStatus().isSuccess());
+            Log.d(TAG, "onActivityResult:GET_AUTH_CODE:code:" + result.getStatus().getStatusCode());
 
             if (result.isSuccess()) {
                 // [START get_auth_code]
@@ -124,6 +126,7 @@ public class ServerAuthCodeActivity extends AppCompatActivity implements
                 // TODO(user): send code to server and exchange for access/refresh/ID tokens.
                 // [END get_auth_code]
             } else {
+                Log.d(TAG, "FAILED TO PERFORM SUCCESS: " + result.getStatus().getStatusMessage());
                 // Show signed-out UI.
                 updateUI(false);
             }
