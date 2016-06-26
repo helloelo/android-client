@@ -21,8 +21,15 @@
             android:name=".GamesActivity"
             android:label="@string/title_activity_games"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter >
+            <intent-filter>
                 <action android:name="tk.helloelo.helloelo.GAMES_ACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".BichActivity">
+            <intent-filter>
+                <action android:name="tk.helloelo.helloelo.BICH_ACTIVITY" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

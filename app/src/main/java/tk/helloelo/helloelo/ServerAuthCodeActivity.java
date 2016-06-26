@@ -98,7 +98,7 @@ public class ServerAuthCodeActivity extends AppCompatActivity implements
             public void onSuccess(int statusCode, Header[] headers, byte[] response) {
                 mAuthCodeTextView.setText(getString(R.string.auth_code_fmt, new String(response)));
                 //Class classItem = HelloEloClient.class;
-                startActivity(new Intent("tk.helloelo.helloelo.GAMES_ACTIVITY"));
+                startActivity(new Intent("tk.helloelo.helloelo.BICH_ACTIVITY"));
             }
 
             @Override
@@ -176,7 +176,7 @@ public class ServerAuthCodeActivity extends AppCompatActivity implements
                     public void onSuccess(int statusCode, Header[] headers, byte[] response) {
                         mAuthCodeTextView.setText(getString(R.string.auth_code_fmt, new String(response)));
                         //Class classItem = HelloEloClient.class;
-                        startActivity(new Intent("tk.helloelo.helloelo.GAMES_ACTIVITY"));
+                        startActivity(new Intent("tk.helloelo.helloelo.BICH_ACTIVITY"));
                     }
 
                     @Override
