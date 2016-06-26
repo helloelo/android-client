@@ -5,7 +5,7 @@ import com.loopj.android.http.*;
 public class HelloEloClient {
     private static final String BASE_URL = /*"http://helloelo.tk:8080/";//*/"http://helloelo.tk/v1/";
 
-    private static AsyncHttpClient client = new AsyncHttpClient();
+    public static AsyncHttpClient client = new AsyncHttpClient();
 
     public static void get(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
         client.get(getAbsoluteUrl(url), params, responseHandler);

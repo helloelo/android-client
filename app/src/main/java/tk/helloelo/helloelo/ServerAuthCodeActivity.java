@@ -55,6 +55,15 @@ public class ServerAuthCodeActivity extends AppCompatActivity implements
         // For sample only: make sure there is a valid server client ID.
         validateServerClientID();
 
+
+        AsyncHttpClient myClient = new AsyncHttpClient();
+        PersistentCookieStore myCookieStore = new PersistentCookieStore(this);
+        myClient.setCookieStore(myCookieStore);
+
+        HelloEloClient.client = myClient;
+
+        this.initPlayer();
+
         // [START configure_signin]
         // Configure sign-in to request offline access to the user's ID, basic
         // profile, and Google Drive. The first time you request a code you will
@@ -76,6 +85,32 @@ public class ServerAuthCodeActivity extends AppCompatActivity implements
                 .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
+    }
+
+
+    private void initPlayer() {
+        HelloEloClient.get("init", null, new AsyncHttpResponseHandler() {
+            @Override
+            public void onStart() {
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] response) {
+                mAuthCodeTextView.setText(getString(R.string.auth_code_fmt, new String(response)));
+                //Class classItem = HelloEloClient.class;
+                startActivity(new Intent("tk.helloelo.helloelo.GAMES_ACTIVITY"));
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
+            }
+
+            @Override
+            public void onRetry(int retryNo) {
+            }
+
+        });
+
     }
 
     private void getAuthCode() {
@@ -132,7 +167,7 @@ public class ServerAuthCodeActivity extends AppCompatActivity implements
                 RequestParams params = new RequestParams();
                 params.add("code", authCode);
 
-                HelloEloClient.get("oauth", params, new AsyncHttpResponseHandler() {
+                HelloEloClient.get("login", params, new AsyncHttpResponseHandler() {
                     @Override
                     public void onStart() {
                     }
