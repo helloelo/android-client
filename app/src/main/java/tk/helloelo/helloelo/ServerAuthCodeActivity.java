@@ -89,20 +89,24 @@ public class ServerAuthCodeActivity extends AppCompatActivity implements
 
 
     private void initPlayer() {
-        HelloEloClient.get("init", null, new AsyncHttpResponseHandler() {
+        HelloEloClient.get("init", null, new JsonHttpResponseHandler() {
             @Override
             public void onStart() {
             }
 
             @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] response) {
-                mAuthCodeTextView.setText(getString(R.string.auth_code_fmt, new String(response)));
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                try {
+                    HelloEloClient.player = Player.fromJSONObject(response);
+                    mAuthCodeTextView.setText(getString(R.string.welcome_fmt, HelloEloClient.player.name));
+
+                }
+                catch (JSONException exception) {
+                    mAuthCodeTextView.setText(getString(R.string.error_fmt, exception.getMessage()));
+
+                }
                 //Class classItem = HelloEloClient.class;
                 startActivity(new Intent("tk.helloelo.helloelo.BICH_ACTIVITY"));
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
             }
 
             @Override
