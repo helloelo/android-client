@@ -13,6 +13,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "595282529503-v96ad1hofis1j82oe3onke7ikijtfbtj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tk.helloelo.helloelo",
+            "certificate_hash": "DE1429398E4082697AD712ECE9735F340D273A57"
+          }
+        },
+        {
           "client_id": "595282529503-ptb59q5k78ov783vid3o2hd6av8v1k8e.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
