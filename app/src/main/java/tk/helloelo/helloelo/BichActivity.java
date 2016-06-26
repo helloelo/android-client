@@ -7,7 +7,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 public class BichActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
@@ -22,6 +25,9 @@ public class BichActivity extends AppCompatActivity implements AdapterView.OnIte
         // Использование собственного шаблона
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 R.layout.image_btn_list_item, R.id.label, values);
+
+        TextView playerName = (TextView) findViewById(R.id.playerName);
+        playerName.setText(HelloEloClient.player.name);
 
         // Set up ListView and Adapter
         ListView listView = (ListView) findViewById(R.id.list);
