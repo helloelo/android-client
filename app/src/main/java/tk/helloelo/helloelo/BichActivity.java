@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +29,9 @@ public class BichActivity extends AppCompatActivity implements AdapterView.OnIte
 
         TextView playerName = (TextView) findViewById(R.id.playerName);
         playerName.setText(HelloEloClient.player.name);
+
+        ImageView playerPicture = (ImageView) findViewById(R.id.playerPicture);
+        new ImageDownloader(playerPicture).execute(HelloEloClient.player.playerPicture);
 
         // Set up ListView and Adapter
         ListView listView = (ListView) findViewById(R.id.list);

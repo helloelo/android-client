@@ -15,27 +15,23 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        >
+        android:layout_centerHorizontal="true">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:id="@+id/playerPicture"
-            android:src="@android:drawable/sym_def_app_icon" />
+            android:src="@android:drawable/sym_def_app_icon"
+            android:layout_gravity="right"
+            android:layout_marginRight="5dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Full Name"
-            android:id="@+id/playerName" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Log Out"
-            android:id="@+id/button" />
+            android:id="@+id/playerName"
+            android:layout_gravity="center" />
 
     </LinearLayout>
 
