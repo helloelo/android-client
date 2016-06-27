@@ -20,20 +20,49 @@ import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 import cz.msebera.android.httpclient.Header;
 
 public class BichActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
-    String[] games;
-    String[] gameIds;
+    ArrayList<String> gameIds = new ArrayList<String>();
 
     BichActivity self;
+
+    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bich);
+
+        self = this;
+
+        String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
+                "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
+                "Linux", "OS/2" };
+
+        // Использование собственного шаблона
+        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+        //        R.layout.image_btn_list_item, R.id.label, values);
+
+        // Использование собственного шаблона
+        adapter = new ArrayAdapter<String>(this,
+                R.layout.image_btn_list_item, R.id.label, values);
+
+        TextView playerName = (TextView) findViewById(R.id.playerName);
+        playerName.setText(HelloEloClient.player.name);
+
+        ImageView playerPicture = (ImageView) findViewById(R.id.playerPicture);
+        new ImageDownloader(playerPicture).execute(HelloEloClient.player.playerPicture);
+
+        // Set up ListView and Adapter
+        ListView listView = (ListView) findViewById(R.id.list);
+
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(this);
 
         HelloEloClient.get("games", null, new JsonHttpResponseHandler() {
             @Override
@@ -42,29 +71,28 @@ public class BichActivity extends AppCompatActivity implements AdapterView.OnIte
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                ArrayList<String> g = new ArrayList<String>();
-                ArrayList<String> gi = new ArrayList<String>();
+                ArrayList<String> games = new ArrayList<String>();
+                //String[] gamesArray = {};
                 for(int i = 0 ; i < response.length(); i++){
                     try {
                         JSONObject row = response.getJSONObject(i);
-                        g.add(row.getString("name").toString());
-                        gi.add(row.getString("id_game").toString());
+                        games.add(row.getString("name"));
+                        //adapter.add(row.getString("name"));
+                        gameIds.add(row.getString("id_game"));
                     }
                     catch (JSONException e) {
                         Log.d("yeah", e.getMessage());
                     }
                 }
-                games = (String[])g.toArray();
-                gameIds = (String[])gi.toArray();
 
-                // Set up ListView and Adapter
-                ListView listView = (ListView) findViewById(R.id.list);
-
-                // Использование собственного шаблона
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(self,
+                //games.toArray(gamesArray);
+                adapter = new ArrayAdapter<String>(self,
                         R.layout.image_btn_list_item, R.id.label, games);
+
+                ListView listView = (ListView) findViewById(R.id.list);
                 listView.setAdapter(adapter);
-                listView.setOnItemClickListener(self);
+
+                //adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -72,14 +100,6 @@ public class BichActivity extends AppCompatActivity implements AdapterView.OnIte
             }
 
         });
-
-        self = this;
-
-        TextView playerName = (TextView) findViewById(R.id.playerName);
-        playerName.setText(HelloEloClient.player.name);
-
-        ImageView playerPicture = (ImageView) findViewById(R.id.playerPicture);
-        new ImageDownloader(playerPicture).execute(HelloEloClient.player.playerPicture);
     }
 
     @Override

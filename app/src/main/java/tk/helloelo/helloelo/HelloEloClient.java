@@ -1,5 +1,7 @@
 package tk.helloelo.helloelo;
 
+import android.util.Log;
+
 import com.loopj.android.http.*;
 
 public class HelloEloClient {
@@ -10,6 +12,7 @@ public class HelloEloClient {
     public static Player player;
 
     public static void get(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
+        Log.d("yeah", getAbsoluteUrl(url));
         client.get(getAbsoluteUrl(url), params, responseHandler);
     }
 
